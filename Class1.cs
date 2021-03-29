@@ -61,7 +61,7 @@ namespace FasterBossWait
                     typeof(HoldoutZoneController).GetProperty("charge").SetValue(TeleporterInteraction.instance.holdoutZoneController, newCharge);
                     
                 }
-
+                  
 
                 orig(self);
             };
