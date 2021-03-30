@@ -14,7 +14,7 @@ namespace FasterBossWait
 {
     [BepInDependency("com.bepis.r2api")]
 
-    [BepInPlugin("com.Chris-Stetvenson-Git.FasterBossWait", "Faster Boss Wait", "1.0.0")]
+    [BepInPlugin("com.Chris-Stetvenson-Git.FasterBossWait", "Faster Boss Wait", "1.0.1")]
     public class FasterBossWait : BaseUnityPlugin
     {
 
@@ -27,8 +27,15 @@ namespace FasterBossWait
 
             bool zone = false;
 
+            bool hasTeleporter = false;
+
             float chargedKill = PercentIncrease.Value * 0.01f;
 
+            On.RoR2.SceneDirector.PlaceTeleporter += (orig, self) =>
+            {
+                hasTeleporter = true;
+                orig(self);
+            };
             On.RoR2.BossGroup.OnDefeatedServer += (orig, self) =>
             {
                 zone = true;
@@ -43,7 +50,7 @@ namespace FasterBossWait
 
             On.RoR2.CharacterBody.OnDeathStart += (orig, self) =>
             {
-                if (zone)
+                if (zone && hasTeleporter)
                 {
                     float chargeVal = (float)typeof(HoldoutZoneController).GetProperty("charge").GetValue(TeleporterInteraction.instance.holdoutZoneController);
 
