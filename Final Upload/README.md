@@ -13,3 +13,7 @@ Once the boss has been dispatched, each kill will increase the charge of the tel
  2. Done
 
 Note: The mod must be enabled and run at least once before a config file will be generated.
+
+### Changelog
+#### 11.0.11
+Fixed a bug that would prevent Mithrix from entering his item steal phase.

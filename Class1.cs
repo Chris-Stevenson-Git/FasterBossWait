@@ -27,13 +27,13 @@ namespace FasterBossWait
 
             bool zone = false;
 
-            bool hasTeleporter = false;
+            bool isFinalStage = false;
 
             float chargedKill = PercentIncrease.Value * 0.01f;
 
             On.RoR2.SceneDirector.PlaceTeleporter += (orig, self) =>
             {
-                hasTeleporter = true;
+                isFinalStage = (bool)typeof(SceneDef).GetProperty("isFinalStage").GetValue(SceneInfo.instance.sceneDef);
                 orig(self);
             };
             On.RoR2.BossGroup.OnDefeatedServer += (orig, self) =>
@@ -50,7 +50,7 @@ namespace FasterBossWait
 
             On.RoR2.CharacterBody.OnDeathStart += (orig, self) =>
             {
-                if (zone && hasTeleporter)
+                if (zone && !isFinalStage)
                 {
                     float chargeVal = (float)typeof(HoldoutZoneController).GetProperty("charge").GetValue(TeleporterInteraction.instance.holdoutZoneController);
 

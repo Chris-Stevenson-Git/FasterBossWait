@@ -1,6 +1,6 @@
 {
     "name": "FasterBossWait",
-    "version_number": "1.0.0",
+    "version_number": "1.0.1",
     "website_url": "https://github.com/Chris-Stevenson-Git/FasterBossWait",
     "description": "Speeds up the downtime between killing the boss and leaving the area. Each kill after the boss is dead increases the teleporter charge.",
     "dependencies": [
